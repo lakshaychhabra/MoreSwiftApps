@@ -13,6 +13,7 @@
 		3A44A2A12024E58000F3E94F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A44A2A02024E58000F3E94F /* Assets.xcassets */; };
 		3A44A2A42024E58000F3E94F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A44A2A22024E58000F3E94F /* LaunchScreen.storyboard */; };
 		3A44A2AC2024E75C00F3E94F /* PlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A44A2AB2024E75C00F3E94F /* PlacesViewController.swift */; };
+		3A44A2AF2024F9D900F3E94F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A44A2AE2024F9C900F3E94F /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		3A44A2A32024E58000F3E94F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3A44A2A52024E58000F3E94F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3A44A2AB2024E75C00F3E94F /* PlacesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesViewController.swift; sourceTree = "<group>"; };
+		3A44A2AE2024F9C900F3E94F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A44A2AF2024F9D900F3E94F /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +45,7 @@
 			children = (
 				3A44A2982024E58000F3E94F /* Memorable Places */,
 				3A44A2972024E58000F3E94F /* Products */,
+				3A44A2AD2024F9C900F3E94F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -65,6 +69,14 @@
 				3A44A2A52024E58000F3E94F /* Info.plist */,
 			);
 			path = "Memorable Places";
+			sourceTree = "<group>";
+		};
+		3A44A2AD2024F9C900F3E94F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3A44A2AE2024F9C900F3E94F /* CoreLocation.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
