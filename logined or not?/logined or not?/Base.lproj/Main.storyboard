@@ -25,7 +25,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="raf-qQ-g90">
-                                <rect key="frame" x="302" y="117" width="46" height="30"/>
+                                <rect key="frame" x="201" y="117" width="147" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Log in"/>
                                 <connections>
@@ -39,6 +39,14 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ixR-rU-njK">
+                                <rect key="frame" x="16" y="223" width="52" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Log out"/>
+                                <connections>
+                                    <action selector="logout:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dj5-gQ-56G"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -46,6 +54,7 @@
                     <connections>
                         <outlet property="label" destination="aUR-FM-fa2" id="eki-Ts-qBv"/>
                         <outlet property="loginButton" destination="raf-qQ-g90" id="W6e-kq-oxJ"/>
+                        <outlet property="logoutButton" destination="ixR-rU-njK" id="KJN-IV-0Du"/>
                         <outlet property="textField" destination="4HT-sX-xIr" id="8lK-eq-Y1X"/>
                     </connections>
                 </viewController>
