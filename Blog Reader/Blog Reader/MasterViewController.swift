@@ -31,6 +31,32 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
                         let jsonResult = try JSONSerialization.jsonObject(with: urlContent, options: JSONSerialization.ReadingOptions.mutableContainers) as AnyObject
                         
                       //  print(jsonResult)
+                        let context = self.fetchedResultsController.managedObjectContext
+                        let request = NSFetchRequest<Event>(entityName: "Event")
+                        do{
+                            let results = try context.fetch(request)
+                            
+                            if results.count > 0
+                            {
+                                for result in results {
+                                    context.delete(result)
+                                    
+                                    do{
+                                        try context.save()
+                                    }
+                                    catch {
+                                        print("Specific Delete Fails!")
+                                    }
+                                    
+                                }
+                            }
+                            
+                        }
+                        catch {
+                            print("error during fetch Request failed to delte")
+                        }
+                
+                        
                         
                         if let items = jsonResult["items"] as? [AnyObject] {
                             for item in items {
@@ -38,7 +64,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
 //                                print(newEvent.setValue(item["published"], forKey: "published"))
 //                                print(item["published"])
 //                                print(item["title"])
-                                let context = self.fetchedResultsController.managedObjectContext
+                                
                                 let newEvent = Event(context: context)
                                 
                                 // If appropriate, configure the new managed object.
@@ -163,7 +189,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         fetchRequest.fetchBatchSize = 20
         
         // Edit the sort key as appropriate.
-        let sortDescriptor = NSSortDescriptor(key: "timestamp", ascending: false)
+        let sortDescriptor = NSSortDescriptor(key: "published", ascending: false)
         
         fetchRequest.sortDescriptors = [sortDescriptor]
         
