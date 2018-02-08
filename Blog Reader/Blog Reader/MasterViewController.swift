@@ -17,8 +17,69 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
        
+        let url = URL(string: "https://www.googleapis.com/blogger/v3/blogs/6296508887730508910/posts?key=AIzaSyDm5t_vsYCesulbMMnYUizIo2D00TIcAh8")!
+        let task = URLSession.shared.dataTask(with: url){
+            (data,response,error) in
+            
+            if error != nil {
+                print(error!)
+            }
+            else{
+                if let urlContent = data {
+                    do{
+                        let jsonResult = try JSONSerialization.jsonObject(with: urlContent, options: JSONSerialization.ReadingOptions.mutableContainers) as AnyObject
+                        
+                      //  print(jsonResult)
+                        
+                        if let items = jsonResult["items"] as? [AnyObject] {
+                            for item in items {
+                                
+//                                print(newEvent.setValue(item["published"], forKey: "published"))
+//                                print(item["published"])
+//                                print(item["title"])
+                                let context = self.fetchedResultsController.managedObjectContext
+                                let newEvent = Event(context: context)
+                                
+                                // If appropriate, configure the new managed object.
+                                newEvent.timestamp = Date()
+                                newEvent.setValue(item["published"], forKey: "published")
+                                newEvent.setValue(item["title"], forKey: "title")
+                                newEvent.setValue(item["content"], forKey: "content")
+                                
+                                // Save the context.
+                                do {
+                                    try context.save()
+                                } catch {
+                                    // Replace this implementation with code to handle the error appropriately.
+                                    // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                                    let nserror = error as NSError
+                                    fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+                            
+                                
+                                }
+                                
+                            }
+                            //while net is loading the content we cant make user think it is hang so thats why bitch
+                            DispatchQueue.main.async(execute: {
+                                
+                                self.tableView.reloadData()
+                                
+                            })
+                            
+                            
+                        }
+                        
+                        
+                        
+                    }
+                    catch{
+                            print("Json Parsing Error")
+                    }
+                }
+            }
+        }
+        task.resume()
     
     }
 
@@ -86,7 +147,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     }
 
     func configureCell(_ cell: UITableViewCell, withEvent event: Event) {
-        cell.textLabel!.text = event.timestamp!.description
+        cell.textLabel!.text = event.value(forKey: "title") as? String
     }
 
     // MARK: - Fetched results controller
